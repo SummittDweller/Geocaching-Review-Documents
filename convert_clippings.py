@@ -13,7 +13,7 @@ CONTENT_TAGS = {"p", "li", "blockquote", "pre", "div"}
 
 
 def sanitize_component(text: str) -> str:
-    cleaned = re.sub(r"[^\w -]+", "", text).strip()
+    cleaned = re.sub(r"[^\w\s-]+", "", text).strip()
     dashed = re.sub(r"\s+", "-", cleaned)
     return dashed or "Untitled"
 
@@ -87,7 +87,7 @@ def write_documents(documents: list[ClipDocument], output_dir: Path) -> list[Pat
         base_name = f"{sanitize_component(doc.heading)}--{sanitize_component(doc.subheading)}"
         counter = filename_counts.get(base_name, 0)
         while True:
-            suffix = "" if counter == 0 else f"-{counter + 1}"
+            suffix = "" if counter == 0 else f"-{counter}"
             file_path = output_dir / f"{base_name}{suffix}.md"
             if not file_path.exists():
                 break
