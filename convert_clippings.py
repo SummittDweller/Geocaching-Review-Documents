@@ -115,7 +115,10 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    html_text = args.input_html.read_text(encoding="utf-8", errors="ignore")
+    try:
+        html_text = args.input_html.read_text(encoding="utf-8", errors="ignore")
+    except OSError as exc:
+        parser.error(f"Unable to read input HTML file '{args.input_html}': {exc}")
     documents = parse_documents(html_text)
     written_files = write_documents(documents, args.output_dir)
     print(f"Wrote {len(written_files)} markdown files to {args.output_dir}")

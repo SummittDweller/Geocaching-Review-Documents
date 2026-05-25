@@ -6,9 +6,7 @@ A public repo of some Geocaching reviewer documents and scripts that I've create
 Use the conversion script to generate one markdown file per subheading:
 
 ```bash
-python3 /tmp/workspace/SummittDweller/Geocaching-Review-Documents/convert_clippings.py \
-  /Volumes/RayCue-256GB/Downloads/clippings.html \
-  --output-dir /tmp/workspace/SummittDweller/Geocaching-Review-Documents
+python3 convert_clippings.py <input-clippings.html> --output-dir <output-directory>
 ```
 
 The generated files use this naming format:
