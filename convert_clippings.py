@@ -34,7 +34,8 @@ class BlockParser(HTMLParser):
 
     def handle_endtag(self, tag: str) -> None:
         if self._capture_tag == tag:
-            text = " ".join(part.strip() for part in self._buffer if part.strip()).strip()
+            stripped_parts = [part.strip() for part in self._buffer]
+            text = " ".join(part for part in stripped_parts if part).strip()
             if text:
                 self.blocks.append((tag, text))
             self._capture_tag = None
@@ -86,13 +87,6 @@ def write_documents(documents: list[ClipDocument], output_dir: Path) -> list[Pat
     for doc in documents:
         base_name = f"{sanitize_component(doc.heading)}--{sanitize_component(doc.subheading)}"
         counter = filename_counts.get(base_name, 0)
-        while True:
-            suffix = "" if counter == 0 else f"-{counter}"
-            file_path = output_dir / f"{base_name}{suffix}.md"
-            if not file_path.exists():
-                break
-            counter += 1
-        filename_counts[base_name] = counter + 1
 
         body = "\n\n".join(doc.paragraphs).strip()
         content = f"# {doc.heading}\n\n## {doc.subheading}\n"
@@ -101,7 +95,17 @@ def write_documents(documents: list[ClipDocument], output_dir: Path) -> list[Pat
         else:
             content += "\n"
 
-        file_path.write_text(content, encoding="utf-8")
+        while True:
+            suffix = "" if counter == 0 else f"-{counter}"
+            file_path = output_dir / f"{base_name}{suffix}.md"
+            try:
+                with file_path.open("x", encoding="utf-8") as file_handle:
+                    file_handle.write(content)
+                break
+            except FileExistsError:
+                counter += 1
+
+        filename_counts[base_name] = counter + 1
         written_files.append(file_path)
 
     return written_files
@@ -121,8 +125,8 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        html_text = args.input_html.read_text(encoding="utf-8", errors="replace")
-    except OSError as exc:
+        html_text = args.input_html.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError) as exc:
         parser.error(
             f"Unable to read input HTML file '{args.input_html}': {exc}. "
             "Check that the file exists and is readable."
