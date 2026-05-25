@@ -86,8 +86,13 @@ def write_documents(documents: list[ClipDocument], output_dir: Path) -> list[Pat
     for doc in documents:
         base_name = f"{sanitize_component(doc.heading)}--{sanitize_component(doc.subheading)}"
         filename_counts[base_name] = filename_counts.get(base_name, 0) + 1
-        suffix = "" if filename_counts[base_name] == 1 else f"-{filename_counts[base_name]}"
+        counter = filename_counts[base_name]
+        suffix = "" if counter == 1 else f"-{counter}"
         file_path = output_dir / f"{base_name}{suffix}.md"
+        while file_path.exists():
+            counter += 1
+            filename_counts[base_name] = counter
+            file_path = output_dir / f"{base_name}-{counter}.md"
 
         body = "\n\n".join(doc.paragraphs).strip()
         content = f"# {doc.heading}\n\n## {doc.subheading}\n"
@@ -118,7 +123,10 @@ def main() -> int:
     try:
         html_text = args.input_html.read_text(encoding="utf-8", errors="replace")
     except OSError as exc:
-        parser.error(f"Unable to read input HTML file '{args.input_html}': {exc}")
+        parser.error(
+            f"Unable to read input HTML file '{args.input_html}': {exc}. "
+            "Check that the file exists and is readable."
+        )
     documents = parse_documents(html_text)
     written_files = write_documents(documents, args.output_dir)
     print(f"Wrote {len(written_files)} markdown files to {args.output_dir}")
