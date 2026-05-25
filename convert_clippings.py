@@ -92,7 +92,7 @@ def write_documents(documents: list[ClipDocument], output_dir: Path) -> list[Pat
             if not file_path.exists():
                 break
             counter += 1
-        filename_counts[base_name] = 1 if counter == 0 else counter + 1
+        filename_counts[base_name] = counter + 1
 
         body = "\n\n".join(doc.paragraphs).strip()
         content = f"# {doc.heading}\n\n## {doc.subheading}\n"
