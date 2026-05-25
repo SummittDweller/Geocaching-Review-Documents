@@ -13,7 +13,7 @@ CONTENT_TAGS = {"p", "li", "blockquote", "pre", "div"}
 
 
 def sanitize_component(text: str) -> str:
-    cleaned = re.sub(r"[^A-Za-z0-9 _-]+", "", text).strip()
+    cleaned = re.sub(r"[^\w -]+", "", text).strip()
     dashed = re.sub(r"\s+", "-", cleaned)
     return dashed or "Untitled"
 
@@ -116,7 +116,7 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        html_text = args.input_html.read_text(encoding="utf-8", errors="ignore")
+        html_text = args.input_html.read_text(encoding="utf-8", errors="replace")
     except OSError as exc:
         parser.error(f"Unable to read input HTML file '{args.input_html}': {exc}")
     documents = parse_documents(html_text)
