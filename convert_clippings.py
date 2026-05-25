@@ -85,14 +85,14 @@ def write_documents(documents: list[ClipDocument], output_dir: Path) -> list[Pat
 
     for doc in documents:
         base_name = f"{sanitize_component(doc.heading)}--{sanitize_component(doc.subheading)}"
-        filename_counts[base_name] = filename_counts.get(base_name, 0) + 1
-        counter = filename_counts[base_name]
-        suffix = "" if counter == 1 else f"-{counter}"
-        file_path = output_dir / f"{base_name}{suffix}.md"
-        while file_path.exists():
+        counter = filename_counts.get(base_name, 0)
+        while True:
+            suffix = "" if counter == 0 else f"-{counter + 1}"
+            file_path = output_dir / f"{base_name}{suffix}.md"
+            if not file_path.exists():
+                break
             counter += 1
-            filename_counts[base_name] = counter
-            file_path = output_dir / f"{base_name}-{counter}.md"
+        filename_counts[base_name] = 1 if counter == 0 else counter + 1
 
         body = "\n\n".join(doc.paragraphs).strip()
         content = f"# {doc.heading}\n\n## {doc.subheading}\n"
