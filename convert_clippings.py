@@ -99,8 +99,8 @@ def write_documents(documents: list[ClipDocument], output_dir: Path) -> list[Pat
             suffix = "" if counter == 0 else f"-{counter}"
             file_path = output_dir / f"{base_name}{suffix}.md"
             try:
-                with file_path.open("x", encoding="utf-8") as file_handle:
-                    file_handle.write(content)
+                with file_path.open("x", encoding="utf-8") as f:
+                    f.write(content)
                 break
             except FileExistsError:
                 counter += 1
