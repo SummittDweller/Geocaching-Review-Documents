@@ -10,6 +10,7 @@ from pathlib import Path
 
 HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 CONTENT_TAGS = {"p", "li", "blockquote", "pre", "div"}
+HEADING_SEPARATOR = "--"
 
 
 def sanitize_component(text: str) -> str:
@@ -85,7 +86,11 @@ def write_documents(documents: list[ClipDocument], output_dir: Path) -> list[Pat
     filename_counts: dict[str, int] = {}
 
     for doc in documents:
-        base_name = f"{sanitize_component(doc.heading)}--{sanitize_component(doc.subheading)}"
+        base_name = (
+            f"{sanitize_component(doc.heading)}"
+            f"{HEADING_SEPARATOR}"
+            f"{sanitize_component(doc.subheading)}"
+        )
         counter = filename_counts.get(base_name, 0)
 
         body = "\n\n".join(doc.paragraphs).strip()
@@ -126,7 +131,12 @@ def main() -> int:
 
     try:
         html_text = args.input_html.read_text(encoding="utf-8")
-    except (OSError, UnicodeDecodeError) as exc:
+    except UnicodeDecodeError as exc:
+        parser.error(
+            f"Unable to decode input HTML file '{args.input_html}' as UTF-8: {exc}. "
+            "Re-export or convert the file to UTF-8 encoding."
+        )
+    except OSError as exc:
         parser.error(
             f"Unable to read input HTML file '{args.input_html}': {exc}. "
             "Check that the file exists and is readable."
