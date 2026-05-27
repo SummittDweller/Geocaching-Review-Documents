@@ -1,0 +1,1 @@
+In the following PDF document I try to briefly explain how to attach photo(s) to a Reviewer Note.  See https://images.summittdweller.com/geocaching/Adding%20Photos%20to%20a%20Geocache%20Reviewer%20Note.pdf

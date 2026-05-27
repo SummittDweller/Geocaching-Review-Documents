@@ -1,0 +1,1 @@
+Terrain Rating greater than 1; Wheelchair Accessible attribute added. This listing was tagged with the warning you see above.  Please adjust the terrain rating back to 1.0 or remove the wheelchair accessible attribute, whichever is appropriate for this listing.

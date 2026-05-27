@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
-CONTENT_TAGS = {"p", "li", "blockquote", "pre", "div"}
+CONTENT_TAGS = {"p", "li", "blockquote", "pre", "div", "dd"}
 HEADING_SEPARATOR = "--"
 
 
@@ -65,11 +65,11 @@ def parse_documents(html_text: str) -> list[ClipDocument]:
     current_doc: ClipDocument | None = None
 
     for tag, text in parser.blocks:
-        if tag == "h1":
+        if tag == "h2":
             current_heading = text
             current_doc = None
             continue
-        if tag in {"h2", "h3", "h4", "h5", "h6"}:
+        if tag in {"h3", "h4", "h5", "h6"}:
             heading = current_heading or "General"
             current_doc = ClipDocument(heading=heading, subheading=text)
             docs.append(current_doc)
@@ -94,11 +94,7 @@ def write_documents(documents: list[ClipDocument], output_dir: Path) -> list[Pat
         counter = filename_counts.get(base_name, 0)
 
         body = "\n\n".join(doc.paragraphs).strip()
-        content = f"# {doc.heading}\n\n## {doc.subheading}\n"
-        if body:
-            content += f"\n{body}\n"
-        else:
-            content += "\n"
+        content = f"{body}\n" if body else "\n"
 
         while True:
             suffix = "" if counter == 0 else f"-{counter}"

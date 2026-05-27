@@ -1,0 +1,1 @@
+There's not enough detail in your Reviewer Note to help me identify the properties around your cache location, so when you provide additional detail (or photos) please tell me more about the property the cache is located on, and if possible, any adjacent properties.

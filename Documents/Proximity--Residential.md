@@ -1,0 +1,1 @@
+This appears to be in the public ROW, but it's in a residential area and close to homes.  Do you have permission from the nearest neighbors, or have you at least notified them?  It's always a good idea to obtain permission in such areas, or at least notify the neighbors so they don't become alarmed when strangers show up and begin "snooping" around.

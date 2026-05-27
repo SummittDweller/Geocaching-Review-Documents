@@ -1,0 +1,1 @@
+If you wish to send photos be sure to do that in a Reviewer Note **before** you submit the listing for a review.  For some strange reason the Reviewer Note you must provide when you submit for review will NOT allow you to attach photos.

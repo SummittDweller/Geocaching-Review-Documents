@@ -1,0 +1,1 @@
+I see that this is on private property.  Please consider including the "Private Residence/Front Yard" attribute so geocachers know that they have permission to enter the property.   Many geocachers won't approach a private property location unless they see that attribute.

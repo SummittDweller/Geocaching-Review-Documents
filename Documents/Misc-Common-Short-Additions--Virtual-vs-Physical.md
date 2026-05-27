@@ -1,0 +1,1 @@
+This excerpt from the guidelines may help explain... - A physical waypoint is one where the cache owner has placed an item, such as a container or a tag. - A virtual waypoint is one where the cache owner has not placed an item. Geocachers frequently gather information at virtual stages to help them find or complete the cache.

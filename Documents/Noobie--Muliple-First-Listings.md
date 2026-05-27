@@ -1,0 +1,1 @@
+Since this is your first hide, and especially since you have logged ZERO finds, I have to ask that you submit only one listing at a time.  DO NOT submit multiple listings for review until your first has been published AND found!

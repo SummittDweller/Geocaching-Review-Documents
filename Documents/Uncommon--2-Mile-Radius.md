@@ -1,0 +1,1 @@
+The guidelines basically state that before you place your cache, you should find and log ALL of the multi-, mystery/puzzle, and WhereIGo listings that appear within a 2-mile radius of your target location.  That way you WILL know where all the potential conflicts are located.

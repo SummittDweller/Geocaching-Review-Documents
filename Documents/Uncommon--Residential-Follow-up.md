@@ -1,0 +1,1 @@
+Sorry, a sign of the times. ALWAYS a good idea to seek permission, or at least notify the neighbors.  If someone is approached or threatened by a suspicious neighbor will you regret not having informed them?  I would.

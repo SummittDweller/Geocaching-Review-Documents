@@ -1,0 +1,1 @@
+I suggest you remove or replace your Hint.   The "Hint" is intended to be just that, an optional aid in locating and/or opening your container once a geocacher reaches your final coordinates. It's uncommon, and may be considered offensive, to provide a hint that is not helpful, or one that simply repeats exactly what is in the Description.

@@ -1,0 +1,1 @@
+Sorry, but geocache guidelines specify that listings cannot have an "agenda".  You can put a scripture reference in your container if you like, sometimes even as a hint in the listing (if it truly applies as a helpful "hint").  However, a Description that contains only such a reference will be conceived as having an "agenda", so I can't publish it as-is.

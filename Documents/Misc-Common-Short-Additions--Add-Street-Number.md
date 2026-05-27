@@ -1,0 +1,1 @@
+Also, since this is your residence we don't want geocachers wandering into the neighbors' yard by mistake.  I suggest you add your street number (like "1234 Jones Street") to the description or the hint, that way folks will know EXACTLY which property they can approach.
